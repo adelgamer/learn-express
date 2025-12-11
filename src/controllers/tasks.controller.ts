@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
+import { getTasks } from '../services/tasks.service';
 
-export function getTasks(req: Request, res: Response) {
-    res.send('Tasks and Adel got paid 10 millions')
+export function getTasksController(req: Request, res: Response) {
+    res.send(getTasks())
 }
