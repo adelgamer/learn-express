@@ -6,22 +6,25 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/app.js",
-    "dev": "ts-node app.ts",
+    "dev": "tsx app.ts",
     "db:push": "prisma db push"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
-    "@prisma/client": "^6.19.1",
-    "express": "^5.2.1"
+    "@prisma/adapter-mariadb": "^7.1.0",
+    "@prisma/client": "^7.1.0",
+    "express": "^5.2.1",
+    "mariadb": "^3.4.5"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^25.0.0",
-    "prisma": "^6.19.1",
+    "prisma": "^7.1.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

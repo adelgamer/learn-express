@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { createTask, getTasks } from '../services/tasks.service';
+import { createTask, getTasks } from '../services/tasks.service.js';
 
 export function getTasksController(req: Request, res: Response) {
     res.send(getTasks())

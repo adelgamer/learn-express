@@ -1,9 +1,7 @@
+import 'dotenv/config';
 import express from 'express';
-import { PrismaClient } from '@prisma/client';
-import taskRouter from './src/routes/tasks.route';
-import { baseMiddleware } from './src/middlewares/base.middleware';
-
-const prisma = new PrismaClient();
+import taskRouter from './src/routes/tasks.route.js';
+import { baseMiddleware } from './src/middlewares/base.middleware.js';
 const app = express();
 const port = 3001;
 

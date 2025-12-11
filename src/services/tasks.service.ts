@@ -1,7 +1,10 @@
 import { PrismaClient } from "@prisma/client"
-import { TaskDto } from "../dtos/task.dto"
+import { PrismaMariaDb } from '@prisma/adapter-mariadb'
 
-const prisma = new PrismaClient();
+import { TaskDto } from "../dtos/task.dto.js"
+
+const adapter = new PrismaMariaDb(process.env.DATABASE_URL!)
+const prisma = new PrismaClient({ adapter })
 
 export function getTasks() {
     return 'Tasks and Adel got paid 10 millions ' + new Date()
