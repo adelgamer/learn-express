@@ -27,6 +27,28 @@ model Note {
   favorite   Boolean     @default(false)
   status     NoteStatus  @default(PUBLISHED)
 
+  attachements Attachement[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+
+enum AttachementType {
+  FILE
+  IMAGE
+  VIDEO
+  AUDIO
+}
+
+model Attachement {
+  id String @id @default(uuid())
+
+  note   Note   @relation(fields: [noteId], references: [id])
+  noteId String
+
+  type AttachementType
+  path String          @db.VarChar(255)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
 }
