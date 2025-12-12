@@ -1,8 +1,13 @@
 import express, { Request, Response } from 'express';
 import { createNote, getNotes, deleteNote, updateNote, toggleFavorite, toggleArchive } from '../services/notes.service.js';
 
-export function getNotesController(req: Request, res: Response) {
-    res.send(getNotes())
+export async function getNotesController(req: Request, res: Response) {
+    const notes = await getNotes();
+    res.send({
+        success: true,
+        message: "Notes retreived successfully",
+        data: notes
+    })
 }
 
 export async function createNoteController(req: Request, res: Response) {

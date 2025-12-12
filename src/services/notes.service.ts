@@ -3,8 +3,9 @@ import type { Note } from "../../generated/prisma/client.js";
 import { NotFoundExcpetion } from "../../core/errors/NotFoundExcpetion.js";
 
 
-export function getNotes() {
-    return 'Notes and Adel got paid 10 millions ' + new Date()
+export async function getNotes() {
+    const notes = await prisma.note.findMany({});
+    return { count: notes.length, notes };
 }
 
 export async function createNote(note: Note) {
