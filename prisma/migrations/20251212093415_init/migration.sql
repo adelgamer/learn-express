@@ -1,0 +1,15 @@
+-- CreateTable
+CREATE TABLE `Note` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(255) NOT NULL,
+    `content` TEXT NOT NULL,
+    `privacy` ENUM('PRIVATE', 'PUBLIC') NOT NULL DEFAULT 'PRIVATE',
+    `pinnedAt` DATETIME(3) NULL,
+    `archivedAt` DATETIME(3) NULL,
+    `favorite` BOOLEAN NOT NULL DEFAULT false,
+    `status` ENUM('PUBLISHED', 'DRAFT') NOT NULL DEFAULT 'PUBLISHED',
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
