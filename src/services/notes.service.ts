@@ -32,6 +32,13 @@ export async function deleteNote(noteId: string) {
 }
 
 export async function updateNote(noteId: string, data: Note) {
+    const note = await prisma.note.findUnique({
+        where: {
+            id: noteId
+        }
+    })
+    if (!note) throw new NotFoundExcpetion('Note not found');
+
     const updatedNote = await prisma.note.update({
         where: {
             id: noteId
@@ -44,5 +51,28 @@ export async function updateNote(noteId: string, data: Note) {
             status: data.status
         }
     });
+    return updatedNote;
+}
+
+export async function toggleFavorite(noteId: string) {
+
+    // 1- Check if note exists
+    const note = await prisma.note.findUnique({
+        where: {
+            id: noteId
+        }
+    })
+    if (!note) throw new NotFoundExcpetion('Note not found');
+
+
+    const updatedNote = await prisma.note.update({
+        where: {
+            id: noteId
+        },
+        data: {
+            favorite: !note.favorite,
+        }
+    });
+
     return updatedNote;
 }
