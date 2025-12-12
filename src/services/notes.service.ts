@@ -12,3 +12,12 @@ export async function createNote(note: Note) {
     });
     return createdNote;
 }
+
+export async function deleteNote(noteId: string) {
+    const deletedNote = await prisma.note.delete({
+        where: {
+            id: noteId
+        }
+    });
+    return deletedNote;
+}

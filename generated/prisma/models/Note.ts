@@ -20,22 +20,12 @@ export type NoteModel = runtime.Types.Result.DefaultSelection<Prisma.$NotePayloa
 
 export type AggregateNote = {
   _count: NoteCountAggregateOutputType | null
-  _avg: NoteAvgAggregateOutputType | null
-  _sum: NoteSumAggregateOutputType | null
   _min: NoteMinAggregateOutputType | null
   _max: NoteMaxAggregateOutputType | null
 }
 
-export type NoteAvgAggregateOutputType = {
-  id: number | null
-}
-
-export type NoteSumAggregateOutputType = {
-  id: number | null
-}
-
 export type NoteMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   title: string | null
   content: string | null
   privacy: $Enums.NotePrivacy | null
@@ -48,7 +38,7 @@ export type NoteMinAggregateOutputType = {
 }
 
 export type NoteMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   title: string | null
   content: string | null
   privacy: $Enums.NotePrivacy | null
@@ -74,14 +64,6 @@ export type NoteCountAggregateOutputType = {
   _all: number
 }
 
-
-export type NoteAvgAggregateInputType = {
-  id?: true
-}
-
-export type NoteSumAggregateInputType = {
-  id?: true
-}
 
 export type NoteMinAggregateInputType = {
   id?: true
@@ -161,18 +143,6 @@ export type NoteAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: NoteAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: NoteSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: NoteMinAggregateInputType
@@ -203,14 +173,12 @@ export type NoteGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: NoteCountAggregateInputType | true
-  _avg?: NoteAvgAggregateInputType
-  _sum?: NoteSumAggregateInputType
   _min?: NoteMinAggregateInputType
   _max?: NoteMaxAggregateInputType
 }
 
 export type NoteGroupByOutputType = {
-  id: number
+  id: string
   title: string
   content: string
   privacy: $Enums.NotePrivacy
@@ -221,8 +189,6 @@ export type NoteGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   _count: NoteCountAggregateOutputType | null
-  _avg: NoteAvgAggregateOutputType | null
-  _sum: NoteSumAggregateOutputType | null
   _min: NoteMinAggregateOutputType | null
   _max: NoteMaxAggregateOutputType | null
 }
@@ -246,7 +212,7 @@ export type NoteWhereInput = {
   AND?: Prisma.NoteWhereInput | Prisma.NoteWhereInput[]
   OR?: Prisma.NoteWhereInput[]
   NOT?: Prisma.NoteWhereInput | Prisma.NoteWhereInput[]
-  id?: Prisma.IntFilter<"Note"> | number
+  id?: Prisma.StringFilter<"Note"> | string
   title?: Prisma.StringFilter<"Note"> | string
   content?: Prisma.StringFilter<"Note"> | string
   privacy?: Prisma.EnumNotePrivacyFilter<"Note"> | $Enums.NotePrivacy
@@ -273,7 +239,7 @@ export type NoteOrderByWithRelationInput = {
 }
 
 export type NoteWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.NoteWhereInput | Prisma.NoteWhereInput[]
   OR?: Prisma.NoteWhereInput[]
   NOT?: Prisma.NoteWhereInput | Prisma.NoteWhereInput[]
@@ -300,17 +266,15 @@ export type NoteOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.NoteCountOrderByAggregateInput
-  _avg?: Prisma.NoteAvgOrderByAggregateInput
   _max?: Prisma.NoteMaxOrderByAggregateInput
   _min?: Prisma.NoteMinOrderByAggregateInput
-  _sum?: Prisma.NoteSumOrderByAggregateInput
 }
 
 export type NoteScalarWhereWithAggregatesInput = {
   AND?: Prisma.NoteScalarWhereWithAggregatesInput | Prisma.NoteScalarWhereWithAggregatesInput[]
   OR?: Prisma.NoteScalarWhereWithAggregatesInput[]
   NOT?: Prisma.NoteScalarWhereWithAggregatesInput | Prisma.NoteScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Note"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Note"> | string
   title?: Prisma.StringWithAggregatesFilter<"Note"> | string
   content?: Prisma.StringWithAggregatesFilter<"Note"> | string
   privacy?: Prisma.EnumNotePrivacyWithAggregatesFilter<"Note"> | $Enums.NotePrivacy
@@ -323,6 +287,7 @@ export type NoteScalarWhereWithAggregatesInput = {
 }
 
 export type NoteCreateInput = {
+  id?: string
   title: string
   content: string
   privacy?: $Enums.NotePrivacy
@@ -335,7 +300,7 @@ export type NoteCreateInput = {
 }
 
 export type NoteUncheckedCreateInput = {
-  id?: number
+  id?: string
   title: string
   content: string
   privacy?: $Enums.NotePrivacy
@@ -348,6 +313,7 @@ export type NoteUncheckedCreateInput = {
 }
 
 export type NoteUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   privacy?: Prisma.EnumNotePrivacyFieldUpdateOperationsInput | $Enums.NotePrivacy
@@ -360,7 +326,7 @@ export type NoteUpdateInput = {
 }
 
 export type NoteUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   privacy?: Prisma.EnumNotePrivacyFieldUpdateOperationsInput | $Enums.NotePrivacy
@@ -373,7 +339,7 @@ export type NoteUncheckedUpdateInput = {
 }
 
 export type NoteCreateManyInput = {
-  id?: number
+  id?: string
   title: string
   content: string
   privacy?: $Enums.NotePrivacy
@@ -386,6 +352,7 @@ export type NoteCreateManyInput = {
 }
 
 export type NoteUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   privacy?: Prisma.EnumNotePrivacyFieldUpdateOperationsInput | $Enums.NotePrivacy
@@ -398,7 +365,7 @@ export type NoteUpdateManyMutationInput = {
 }
 
 export type NoteUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   privacy?: Prisma.EnumNotePrivacyFieldUpdateOperationsInput | $Enums.NotePrivacy
@@ -429,10 +396,6 @@ export type NoteCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type NoteAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-}
-
 export type NoteMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
@@ -459,10 +422,6 @@ export type NoteMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type NoteSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-}
-
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -485,14 +444,6 @@ export type EnumNoteStatusFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 
@@ -531,7 +482,7 @@ export type $NotePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "Note"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     title: string
     content: string
     privacy: $Enums.NotePrivacy
@@ -910,7 +861,7 @@ export interface Prisma__NoteClient<T, Null = never, ExtArgs extends runtime.Typ
  * Fields of the Note model
  */
 export interface NoteFieldRefs {
-  readonly id: Prisma.FieldRef<"Note", 'Int'>
+  readonly id: Prisma.FieldRef<"Note", 'String'>
   readonly title: Prisma.FieldRef<"Note", 'String'>
   readonly content: Prisma.FieldRef<"Note", 'String'>
   readonly privacy: Prisma.FieldRef<"Note", 'NotePrivacy'>

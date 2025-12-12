@@ -18,7 +18,7 @@ enum NoteStatus {
 }
 
 model Note {
-  id         Int         @id @default(autoincrement())
+  id         String      @id @default(uuid())
   title      String      @db.VarChar(255)
   content    String      @db.Text
   privacy    NotePrivacy @default(PRIVATE)

@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.1.0",
   "engineVersion": "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba",
   "activeProvider": "mysql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nenum NotePrivacy {\n  PRIVATE\n  PUBLIC\n}\n\nenum NoteStatus {\n  PUBLISHED\n  DRAFT\n}\n\nmodel Note {\n  id         Int         @id @default(autoincrement())\n  title      String      @db.VarChar(255)\n  content    String      @db.Text\n  privacy    NotePrivacy @default(PRIVATE)\n  pinnedAt   DateTime?\n  archivedAt DateTime?\n  favorite   Boolean     @default(false)\n  status     NoteStatus  @default(PUBLISHED)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt()\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nenum NotePrivacy {\n  PRIVATE\n  PUBLIC\n}\n\nenum NoteStatus {\n  PUBLISHED\n  DRAFT\n}\n\nmodel Note {\n  id         String      @id @default(uuid())\n  title      String      @db.VarChar(255)\n  content    String      @db.Text\n  privacy    NotePrivacy @default(PRIVATE)\n  pinnedAt   DateTime?\n  archivedAt DateTime?\n  favorite   Boolean     @default(false)\n  status     NoteStatus  @default(PUBLISHED)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt()\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Note\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"privacy\",\"kind\":\"enum\",\"type\":\"NotePrivacy\"},{\"name\":\"pinnedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"archivedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"favorite\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"NoteStatus\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Note\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"privacy\",\"kind\":\"enum\",\"type\":\"NotePrivacy\"},{\"name\":\"pinnedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"archivedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"favorite\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"NoteStatus\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')

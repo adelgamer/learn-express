@@ -1,1 +1,0 @@
-export { getNotes, createNote } from './notes.service.js';

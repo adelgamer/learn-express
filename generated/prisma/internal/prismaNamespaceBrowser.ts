@@ -103,6 +103,7 @@ export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 export const NoteOrderByRelevanceFieldEnum = {
+  id: 'id',
   title: 'title',
   content: 'content'
 } as const
