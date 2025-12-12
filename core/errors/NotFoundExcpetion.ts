@@ -1,10 +1,5 @@
-export class NotFoundExcpetion extends Error {
+import { BaseExceptionClass } from "./BaseExceptionClass.js";
 
-    constructor(message: string, data?: any) {
-        super(message)
-        this.data = data;
-    }
-
+export class NotFoundExcpetion extends BaseExceptionClass {
     readonly statusCode = 404;
-    data?: any
 }
