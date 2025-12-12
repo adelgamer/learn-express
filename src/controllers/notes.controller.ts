@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 import { createNote, getNotes, deleteNote, updateNote, toggleFavorite, toggleArchive } from '../services/notes.service.js';
+import { validationResult } from 'express-validator';
+import { BadRequestExcpetion } from '../../core/errors/BadRequestException.js';
 
 export async function getNotesController(req: Request, res: Response) {
     const notes = await getNotes();
@@ -11,6 +13,9 @@ export async function getNotesController(req: Request, res: Response) {
 }
 
 export async function createNoteController(req: Request, res: Response) {
+    const validation = validationResult(req);
+    if (!validation.isEmpty()) throw new BadRequestExcpetion('Error in the data sent', validation);
+
     const note = await createNote(req.body);
     res.send({
         success: true,
@@ -20,11 +25,11 @@ export async function createNoteController(req: Request, res: Response) {
 }
 
 export async function updateNoteController(req: Request, res: Response) {
-    if (!req.params.noteId) return res.status(401).json({
-        success: false,
-        message: "No id provided",
-        data: null
-    })
+
+    const validation = validationResult(req);
+    if (!validation.isEmpty()) throw new BadRequestExcpetion('Error in the data sent', validation)
+    if (!req.params.noteId) throw new BadRequestExcpetion('No id provided')
+
     const updatedNote = await updateNote(req.params.noteId as string, req.body)
 
     res.json({
