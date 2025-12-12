@@ -5,6 +5,7 @@ import {
     getNotesController,
     updateNoteController,
     toggleFavoriteController,
+    toggleArchiveController,
 } from '../controllers/notes.controller.js';
 const router = express.Router();
 
@@ -13,5 +14,6 @@ router.post('/', createNoteController);
 router.patch('/:noteId', updateNoteController)
 router.delete('/:noteId', deleteNoteController)
 router.put('/:noteId/toggle-favorite', toggleFavoriteController)
+router.put('/:noteId/toggle-archive', toggleArchiveController)
 
 export default router;

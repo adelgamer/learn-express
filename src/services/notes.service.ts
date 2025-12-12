@@ -76,3 +76,26 @@ export async function toggleFavorite(noteId: string) {
 
     return updatedNote;
 }
+
+export async function toggleArchive(noteId: string) {
+
+    // 1- Check if note exists
+    const note = await prisma.note.findUnique({
+        where: {
+            id: noteId
+        }
+    })
+    if (!note) throw new NotFoundExcpetion('Note not found');
+
+
+    const updatedNote = await prisma.note.update({
+        where: {
+            id: noteId
+        },
+        data: {
+            archivedAt: note.archivedAt ? null : new Date(),
+        }
+    });
+
+    return updatedNote;
+}

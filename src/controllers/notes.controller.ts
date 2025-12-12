@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { createNote, getNotes, deleteNote, updateNote, toggleFavorite } from '../services/notes.service.js';
+import { createNote, getNotes, deleteNote, updateNote, toggleFavorite, toggleArchive } from '../services/notes.service.js';
 
 export function getNotesController(req: Request, res: Response) {
     res.send(getNotes())
@@ -35,7 +35,7 @@ export async function deleteNoteController(req: Request, res: Response) {
         message: "No id provided",
         data: null
     })
-    const note = await toggleFavorite(req.params.noteId as string)
+    const note = await deleteNote(req.params.noteId as string)
 
     res.json({
         success: true,
@@ -54,7 +54,22 @@ export async function toggleFavoriteController(req: Request, res: Response) {
 
     res.json({
         success: true,
-        message: "Note is " + (updatedNote.favorite ? 'added' : 'removed') + " favorite.",
+        message: `Note is ${updatedNote.favorite ? 'added to' : 'removed from'} favorite.`,
+        data: updatedNote
+    })
+}
+
+export async function toggleArchiveController(req: Request, res: Response) {
+    if (!req.params.noteId) return res.status(401).json({
+        success: false,
+        message: "No id provided",
+        data: null
+    })
+    const updatedNote = await toggleArchive(req.params.noteId as string)
+
+    res.json({
+        success: true,
+        message: `Note is ${updatedNote.archivedAt ? 'added to' : 'removed from'} archive.`,
         data: updatedNote
     })
 }
