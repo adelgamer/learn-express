@@ -44,3 +44,8 @@ export { Prisma }
  * 
  */
 export type Note = Prisma.NoteModel
+/**
+ * Model Attachement
+ * 
+ */
+export type Attachement = Prisma.AttachementModel

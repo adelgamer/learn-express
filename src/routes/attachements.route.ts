@@ -1,10 +1,11 @@
 import express, { Request, Response } from 'express';
 import { createAttachementController } from '../controllers/attachments.controller.js';
-import multyPart from '../../core/multer/multerIntance.js';
+import instanciateMulter from '../../core/multer/multerIntance.js';
 
 const attRouter = express.Router();
 
+const upload = instanciateMulter('./uploads')
 
-attRouter.post('/', multyPart.single('image'), (req: Request, res: Response) => createAttachementController(req, res))
+attRouter.post('/:noteId', upload.array('images'), (req: Request, res: Response) => createAttachementController(req, res))
 
 export default attRouter;

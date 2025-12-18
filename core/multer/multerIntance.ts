@@ -1,25 +1,21 @@
 import multer from 'multer';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'fs';
 
-// Fix __dirname in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const uploadDir = path.resolve(__dirname, '../../uploads');
-// Change this depending on your folder structure
-
-const storage = multer.diskStorage({
+export default function instanciateMulter(savePath: string) {
+  const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, uploadDir);
+      fs.mkdirSync(savePath, { recursive: true });
+      cb(null, savePath);
     },
     filename: function (req, file, cb) {
-        const ext = path.extname(file.originalname);        // Keep extension
-        const base = path.basename(file.originalname, ext); // Clean filename
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        cb(null, `${base}-${uniqueSuffix}${ext}`);
-    }
-});
+      const uniqueSuffix =
+        Date.now() + '-' + Math.round(Math.random() * 1e9);
+      const extension = path.extname(file.originalname);
 
-const multiPart = multer({ storage });
-export default multiPart;
+      cb(null, `${file.fieldname}-${uniqueSuffix}${extension}`);
+    },
+  });
+
+  return multer({ storage });
+}

@@ -384,7 +384,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Note: 'Note'
+  Note: 'Note',
+  Attachement: 'Attachement'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,7 +401,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "note"
+    modelProps: "note" | "attachement"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -470,6 +471,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Attachement: {
+      payload: Prisma.$AttachementPayload<ExtArgs>
+      fields: Prisma.AttachementFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AttachementFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttachementPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AttachementFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttachementPayload>
+        }
+        findFirst: {
+          args: Prisma.AttachementFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttachementPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AttachementFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttachementPayload>
+        }
+        findMany: {
+          args: Prisma.AttachementFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttachementPayload>[]
+        }
+        create: {
+          args: Prisma.AttachementCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttachementPayload>
+        }
+        createMany: {
+          args: Prisma.AttachementCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AttachementDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttachementPayload>
+        }
+        update: {
+          args: Prisma.AttachementUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttachementPayload>
+        }
+        deleteMany: {
+          args: Prisma.AttachementDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AttachementUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AttachementUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttachementPayload>
+        }
+        aggregate: {
+          args: Prisma.AttachementAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAttachement>
+        }
+        groupBy: {
+          args: Prisma.AttachementGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttachementGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AttachementCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttachementCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -525,6 +592,18 @@ export const NoteScalarFieldEnum = {
 export type NoteScalarFieldEnum = (typeof NoteScalarFieldEnum)[keyof typeof NoteScalarFieldEnum]
 
 
+export const AttachementScalarFieldEnum = {
+  id: 'id',
+  noteId: 'noteId',
+  type: 'type',
+  path: 'path',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttachementScalarFieldEnum = (typeof AttachementScalarFieldEnum)[keyof typeof AttachementScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -548,6 +627,15 @@ export const NoteOrderByRelevanceFieldEnum = {
 } as const
 
 export type NoteOrderByRelevanceFieldEnum = (typeof NoteOrderByRelevanceFieldEnum)[keyof typeof NoteOrderByRelevanceFieldEnum]
+
+
+export const AttachementOrderByRelevanceFieldEnum = {
+  id: 'id',
+  noteId: 'noteId',
+  path: 'path'
+} as const
+
+export type AttachementOrderByRelevanceFieldEnum = (typeof AttachementOrderByRelevanceFieldEnum)[keyof typeof AttachementOrderByRelevanceFieldEnum]
 
 
 
@@ -588,6 +676,13 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
  * Reference to a field of type 'NoteStatus'
  */
 export type EnumNoteStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NoteStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AttachementType'
+ */
+export type EnumAttachementTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttachementType'>
     
 
 
@@ -693,6 +788,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   note?: Prisma.NoteOmit
+  attachement?: Prisma.AttachementOmit
 }
 
 /* Types for Logging */

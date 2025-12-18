@@ -51,7 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Note: 'Note'
+  Note: 'Note',
+  Attachement: 'Attachement'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -86,6 +87,18 @@ export const NoteScalarFieldEnum = {
 export type NoteScalarFieldEnum = (typeof NoteScalarFieldEnum)[keyof typeof NoteScalarFieldEnum]
 
 
+export const AttachementScalarFieldEnum = {
+  id: 'id',
+  noteId: 'noteId',
+  type: 'type',
+  path: 'path',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttachementScalarFieldEnum = (typeof AttachementScalarFieldEnum)[keyof typeof AttachementScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -109,4 +122,13 @@ export const NoteOrderByRelevanceFieldEnum = {
 } as const
 
 export type NoteOrderByRelevanceFieldEnum = (typeof NoteOrderByRelevanceFieldEnum)[keyof typeof NoteOrderByRelevanceFieldEnum]
+
+
+export const AttachementOrderByRelevanceFieldEnum = {
+  id: 'id',
+  noteId: 'noteId',
+  path: 'path'
+} as const
+
+export type AttachementOrderByRelevanceFieldEnum = (typeof AttachementOrderByRelevanceFieldEnum)[keyof typeof AttachementOrderByRelevanceFieldEnum]
 

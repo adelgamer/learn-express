@@ -23,3 +23,13 @@ export const NoteStatus = {
 } as const
 
 export type NoteStatus = (typeof NoteStatus)[keyof typeof NoteStatus]
+
+
+export const AttachementType = {
+  FILE: 'FILE',
+  IMAGE: 'IMAGE',
+  VIDEO: 'VIDEO',
+  AUDIO: 'AUDIO'
+} as const
+
+export type AttachementType = (typeof AttachementType)[keyof typeof AttachementType]

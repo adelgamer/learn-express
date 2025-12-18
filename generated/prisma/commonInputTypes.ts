@@ -149,6 +149,23 @@ export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDateTimeFilter<$PrismaModel>
 }
 
+export type EnumAttachementTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttachementType | Prisma.EnumAttachementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AttachementType[]
+  notIn?: $Enums.AttachementType[]
+  not?: Prisma.NestedEnumAttachementTypeFilter<$PrismaModel> | $Enums.AttachementType
+}
+
+export type EnumAttachementTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttachementType | Prisma.EnumAttachementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AttachementType[]
+  notIn?: $Enums.AttachementType[]
+  not?: Prisma.NestedEnumAttachementTypeWithAggregatesFilter<$PrismaModel> | $Enums.AttachementType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAttachementTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAttachementTypeFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[]
@@ -299,6 +316,23 @@ export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedDateTimeFilter<$PrismaModel>
   _max?: Prisma.NestedDateTimeFilter<$PrismaModel>
+}
+
+export type NestedEnumAttachementTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttachementType | Prisma.EnumAttachementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AttachementType[]
+  notIn?: $Enums.AttachementType[]
+  not?: Prisma.NestedEnumAttachementTypeFilter<$PrismaModel> | $Enums.AttachementType
+}
+
+export type NestedEnumAttachementTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttachementType | Prisma.EnumAttachementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AttachementType[]
+  notIn?: $Enums.AttachementType[]
+  not?: Prisma.NestedEnumAttachementTypeWithAggregatesFilter<$PrismaModel> | $Enums.AttachementType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAttachementTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAttachementTypeFilter<$PrismaModel>
 }
 
 

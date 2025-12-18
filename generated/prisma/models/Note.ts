@@ -222,6 +222,7 @@ export type NoteWhereInput = {
   status?: Prisma.EnumNoteStatusFilter<"Note"> | $Enums.NoteStatus
   createdAt?: Prisma.DateTimeFilter<"Note"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Note"> | Date | string
+  attachements?: Prisma.AttachementListRelationFilter
 }
 
 export type NoteOrderByWithRelationInput = {
@@ -235,6 +236,7 @@ export type NoteOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  attachements?: Prisma.AttachementOrderByRelationAggregateInput
   _relevance?: Prisma.NoteOrderByRelevanceInput
 }
 
@@ -252,6 +254,7 @@ export type NoteWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumNoteStatusFilter<"Note"> | $Enums.NoteStatus
   createdAt?: Prisma.DateTimeFilter<"Note"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Note"> | Date | string
+  attachements?: Prisma.AttachementListRelationFilter
 }, "id">
 
 export type NoteOrderByWithAggregationInput = {
@@ -297,6 +300,7 @@ export type NoteCreateInput = {
   status?: $Enums.NoteStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  attachements?: Prisma.AttachementCreateNestedManyWithoutNoteInput
 }
 
 export type NoteUncheckedCreateInput = {
@@ -310,6 +314,7 @@ export type NoteUncheckedCreateInput = {
   status?: $Enums.NoteStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  attachements?: Prisma.AttachementUncheckedCreateNestedManyWithoutNoteInput
 }
 
 export type NoteUpdateInput = {
@@ -323,6 +328,7 @@ export type NoteUpdateInput = {
   status?: Prisma.EnumNoteStatusFieldUpdateOperationsInput | $Enums.NoteStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attachements?: Prisma.AttachementUpdateManyWithoutNoteNestedInput
 }
 
 export type NoteUncheckedUpdateInput = {
@@ -336,6 +342,7 @@ export type NoteUncheckedUpdateInput = {
   status?: Prisma.EnumNoteStatusFieldUpdateOperationsInput | $Enums.NoteStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attachements?: Prisma.AttachementUncheckedUpdateManyWithoutNoteNestedInput
 }
 
 export type NoteCreateManyInput = {
@@ -422,6 +429,11 @@ export type NoteMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type NoteScalarRelationFilter = {
+  is?: Prisma.NoteWhereInput
+  isNot?: Prisma.NoteWhereInput
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -446,6 +458,117 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
+export type NoteCreateNestedOneWithoutAttachementsInput = {
+  create?: Prisma.XOR<Prisma.NoteCreateWithoutAttachementsInput, Prisma.NoteUncheckedCreateWithoutAttachementsInput>
+  connectOrCreate?: Prisma.NoteCreateOrConnectWithoutAttachementsInput
+  connect?: Prisma.NoteWhereUniqueInput
+}
+
+export type NoteUpdateOneRequiredWithoutAttachementsNestedInput = {
+  create?: Prisma.XOR<Prisma.NoteCreateWithoutAttachementsInput, Prisma.NoteUncheckedCreateWithoutAttachementsInput>
+  connectOrCreate?: Prisma.NoteCreateOrConnectWithoutAttachementsInput
+  upsert?: Prisma.NoteUpsertWithoutAttachementsInput
+  connect?: Prisma.NoteWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.NoteUpdateToOneWithWhereWithoutAttachementsInput, Prisma.NoteUpdateWithoutAttachementsInput>, Prisma.NoteUncheckedUpdateWithoutAttachementsInput>
+}
+
+export type NoteCreateWithoutAttachementsInput = {
+  id?: string
+  title: string
+  content: string
+  privacy?: $Enums.NotePrivacy
+  pinnedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  favorite?: boolean
+  status?: $Enums.NoteStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type NoteUncheckedCreateWithoutAttachementsInput = {
+  id?: string
+  title: string
+  content: string
+  privacy?: $Enums.NotePrivacy
+  pinnedAt?: Date | string | null
+  archivedAt?: Date | string | null
+  favorite?: boolean
+  status?: $Enums.NoteStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type NoteCreateOrConnectWithoutAttachementsInput = {
+  where: Prisma.NoteWhereUniqueInput
+  create: Prisma.XOR<Prisma.NoteCreateWithoutAttachementsInput, Prisma.NoteUncheckedCreateWithoutAttachementsInput>
+}
+
+export type NoteUpsertWithoutAttachementsInput = {
+  update: Prisma.XOR<Prisma.NoteUpdateWithoutAttachementsInput, Prisma.NoteUncheckedUpdateWithoutAttachementsInput>
+  create: Prisma.XOR<Prisma.NoteCreateWithoutAttachementsInput, Prisma.NoteUncheckedCreateWithoutAttachementsInput>
+  where?: Prisma.NoteWhereInput
+}
+
+export type NoteUpdateToOneWithWhereWithoutAttachementsInput = {
+  where?: Prisma.NoteWhereInput
+  data: Prisma.XOR<Prisma.NoteUpdateWithoutAttachementsInput, Prisma.NoteUncheckedUpdateWithoutAttachementsInput>
+}
+
+export type NoteUpdateWithoutAttachementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  privacy?: Prisma.EnumNotePrivacyFieldUpdateOperationsInput | $Enums.NotePrivacy
+  pinnedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  favorite?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumNoteStatusFieldUpdateOperationsInput | $Enums.NoteStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type NoteUncheckedUpdateWithoutAttachementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  privacy?: Prisma.EnumNotePrivacyFieldUpdateOperationsInput | $Enums.NotePrivacy
+  pinnedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  favorite?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumNoteStatusFieldUpdateOperationsInput | $Enums.NoteStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type NoteCountOutputType
+ */
+
+export type NoteCountOutputType = {
+  attachements: number
+}
+
+export type NoteCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  attachements?: boolean | NoteCountOutputTypeCountAttachementsArgs
+}
+
+/**
+ * NoteCountOutputType without action
+ */
+export type NoteCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NoteCountOutputType
+   */
+  select?: Prisma.NoteCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * NoteCountOutputType without action
+ */
+export type NoteCountOutputTypeCountAttachementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttachementWhereInput
+}
 
 
 export type NoteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -459,6 +582,8 @@ export type NoteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  attachements?: boolean | Prisma.Note$attachementsArgs<ExtArgs>
+  _count?: boolean | Prisma.NoteCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["note"]>
 
 
@@ -477,10 +602,16 @@ export type NoteSelectScalar = {
 }
 
 export type NoteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "content" | "privacy" | "pinnedAt" | "archivedAt" | "favorite" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["note"]>
+export type NoteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  attachements?: boolean | Prisma.Note$attachementsArgs<ExtArgs>
+  _count?: boolean | Prisma.NoteCountOutputTypeDefaultArgs<ExtArgs>
+}
 
 export type $NotePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Note"
-  objects: {}
+  objects: {
+    attachements: Prisma.$AttachementPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     title: string
@@ -832,6 +963,7 @@ readonly fields: NoteFieldRefs;
  */
 export interface Prisma__NoteClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  attachements<T extends Prisma.Note$attachementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Note$attachementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttachementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -888,6 +1020,10 @@ export type NoteFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.NoteOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NoteInclude<ExtArgs> | null
+  /**
    * Filter, which Note to fetch.
    */
   where: Prisma.NoteWhereUniqueInput
@@ -906,6 +1042,10 @@ export type NoteFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.NoteOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NoteInclude<ExtArgs> | null
+  /**
    * Filter, which Note to fetch.
    */
   where: Prisma.NoteWhereUniqueInput
@@ -923,6 +1063,10 @@ export type NoteFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Note
    */
   omit?: Prisma.NoteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NoteInclude<ExtArgs> | null
   /**
    * Filter, which Note to fetch.
    */
@@ -972,6 +1116,10 @@ export type NoteFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.NoteOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NoteInclude<ExtArgs> | null
+  /**
    * Filter, which Note to fetch.
    */
   where?: Prisma.NoteWhereInput
@@ -1020,6 +1168,10 @@ export type NoteFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.NoteOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NoteInclude<ExtArgs> | null
+  /**
    * Filter, which Notes to fetch.
    */
   where?: Prisma.NoteWhereInput
@@ -1063,6 +1215,10 @@ export type NoteCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.NoteOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NoteInclude<ExtArgs> | null
+  /**
    * The data needed to create a Note.
    */
   data: Prisma.XOR<Prisma.NoteCreateInput, Prisma.NoteUncheckedCreateInput>
@@ -1091,6 +1247,10 @@ export type NoteUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the Note
    */
   omit?: Prisma.NoteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NoteInclude<ExtArgs> | null
   /**
    * The data needed to update a Note.
    */
@@ -1132,6 +1292,10 @@ export type NoteUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.NoteOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NoteInclude<ExtArgs> | null
+  /**
    * The filter to search for the Note to update in case it exists.
    */
   where: Prisma.NoteWhereUniqueInput
@@ -1158,6 +1322,10 @@ export type NoteDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.NoteOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NoteInclude<ExtArgs> | null
+  /**
    * Filter which Note to delete.
    */
   where: Prisma.NoteWhereUniqueInput
@@ -1178,6 +1346,30 @@ export type NoteDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * Note.attachements
+ */
+export type Note$attachementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Attachement
+   */
+  select?: Prisma.AttachementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Attachement
+   */
+  omit?: Prisma.AttachementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttachementInclude<ExtArgs> | null
+  where?: Prisma.AttachementWhereInput
+  orderBy?: Prisma.AttachementOrderByWithRelationInput | Prisma.AttachementOrderByWithRelationInput[]
+  cursor?: Prisma.AttachementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttachementScalarFieldEnum | Prisma.AttachementScalarFieldEnum[]
+}
+
+/**
  * Note without action
  */
 export type NoteDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1189,4 +1381,8 @@ export type NoteDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the Note
    */
   omit?: Prisma.NoteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NoteInclude<ExtArgs> | null
 }

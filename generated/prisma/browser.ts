@@ -22,3 +22,8 @@ export * from './enums.js';
  * 
  */
 export type Note = Prisma.NoteModel
+/**
+ * Model Attachement
+ * 
+ */
+export type Attachement = Prisma.AttachementModel
