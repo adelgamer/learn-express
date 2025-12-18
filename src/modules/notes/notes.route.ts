@@ -6,11 +6,11 @@ import {
     updateNoteController,
     toggleFavoriteController,
     toggleArchiveController,
-} from '../controllers/notes.controller.js';
+} from './notes.controller.js';
 const router = express.Router();
 import { checkSchema } from 'express-validator';
-import { createNoteValidationSchema } from '../validators/create-note.validation.js';
-import { updateNoteValidationSchema } from '../validators/update-note.validation.js';
+import { createNoteValidationSchema } from './dtos/create-note.dto.js';
+import { updateNoteValidationSchema } from './dtos/update-note.dto.js';
 
 router.get('/', getNotesController);
 router.post('/', checkSchema(createNoteValidationSchema), createNoteController);

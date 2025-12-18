@@ -1,6 +1,6 @@
-import prisma from "../../core/databaseClient/prismaClient/prismaClient.js";
-import type { Note } from "../../generated/prisma/client.js";
-import { NotFoundExcpetion } from "../../core/errors/NotFoundExcpetion.js";
+import prisma from "../../../core/databaseClient/prismaClient/prismaClient.js";
+import type { Note } from "../../../generated/prisma/client.js";
+import { NotFoundExcpetion } from "../../../core/errors/NotFoundExcpetion.js";
 
 
 export async function getNotes() {

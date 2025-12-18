@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
-import { createNote, getNotes, deleteNote, updateNote, toggleFavorite, toggleArchive } from '../services/notes.service.js';
+import { createNote, getNotes, deleteNote, updateNote, toggleFavorite, toggleArchive } from './notes.service.js';
 import { validationResult } from 'express-validator';
-import { BadRequestExcpetion } from '../../core/errors/BadRequestException.js';
+import { BadRequestExcpetion } from '../../../core/errors/BadRequestException.js';
 
 export async function getNotesController(req: Request, res: Response) {
     const notes = await getNotes();

@@ -1,4 +1,4 @@
-import { NotePrivacy, NoteStatus } from "../../generated/prisma/enums.js";
+import { NotePrivacy, NoteStatus } from "../../../../generated/prisma/enums.js";
 
 export const createNoteValidationSchema = {
     title: {
