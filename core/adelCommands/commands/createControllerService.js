@@ -15,3 +15,11 @@ export function createService(commandArg) {
 
     fs.writeFileSync(`./src/modules/${commandArg}/${commandArg}.service.ts`, serviceText);
 }
+
+export function createRouter(commandArg) {
+    const routeText = fs.readFileSync('./core/adelCommands/commands/templates/route.txt', 'utf8')
+        .replace(/\${moduleNamePascal}/g, commandArg)
+        .replace(/\${moduleName}/g, commandArg);
+
+    fs.writeFileSync(`./src/modules/${commandArg}/${commandArg}.route.ts`, routeText);
+}
