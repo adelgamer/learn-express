@@ -1,4 +1,7 @@
 import fs, { link } from 'fs';
+import { registerRoute } from './commands/createRoute.js';
+import { createPrismaModel } from './commands/createPrimsaModel.js';
+import { createModuleFolder } from './commands/createModule.js';
 
 const commands = ["create:module"];
 
@@ -18,44 +21,22 @@ if (!commandArg) {
 }
 
 
-switch (process.argv[2]) {
+switch (userCommand) {
 
     case undefined:
         console.log("\x1b[32mWelcome to Adel's command prompt\n\n\x1b[0m");
         break;
 
     case "create:module":
-        console.log("\x1b[32mCreating a module\n\n\x1b[0m");
+        console.log(`\x1b[32mCreating a module ${commandArg}\n\n\x1b[0m`);
         // 1- Adding a new route to mainRouter.ts
-        const mainRouterLinesArray = fs.readFileSync('./src/mainRouter.ts', 'utf8').split('\n');
-
-        const pattern = /export.*default.*mainRouter/;
-
-        for (const [index, line] of mainRouterLinesArray.entries()) {
-            if (pattern.test(line)) {
-                // Go back two linesand add
-                const insertPosition = index - 2 <= 0 ? 0 : index - 2;
-
-                const newRoute = `mainRouter.use('/${commandArg}', ${commandArg}Router);`;
-                mainRouterLinesArray.splice(insertPosition, 0, newRoute);
-                break;
-            }
-        }
-        console.log(mainRouterLinesArray.join('\n'));
-        fs.writeFileSync('./src/mainRouter.ts', mainRouterLinesArray.join('\n'));
+        registerRoute(commandArg);
 
         // 2- Adding a new prisma modal
-        let prismaSchemaText = fs.readFileSync('./prisma/schema.prisma', 'utf8');
-        prismaSchemaText +=
-            `
-model ${commandArg} {
-  id String @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
-}
-\n\n
-`
-        fs.writeFileSync('./prisma/schema.prisma', prismaSchemaText);
+        createPrismaModel(commandArg);
+
+        // 3- Create a module folder
+        createModuleFolder(commandArg);
 
         break;
 
