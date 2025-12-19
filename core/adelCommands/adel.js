@@ -2,7 +2,7 @@ import fs, { link } from 'fs';
 import { registerRoute } from './commands/createRoute.js';
 import { createPrismaModel } from './commands/createPrimsaModel.js';
 import { createModuleFolder } from './commands/createModule.js';
-import { createController } from './commands/createController.js';
+import { createController, createService } from './commands/createControllerService.js';
 
 const commands = ["create:module"];
 
@@ -40,7 +40,10 @@ switch (userCommand) {
         createModuleFolder(commandArg);
 
         // 4- Create a controller
-        createController(commandArg)
+        createController(commandArg);
+
+        // 5- Create a service
+        createService(commandArg);
 
         break;
 
