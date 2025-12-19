@@ -2,6 +2,7 @@ import fs, { link } from 'fs';
 import { registerRoute } from './commands/createRoute.js';
 import { createPrismaModel } from './commands/createPrimsaModel.js';
 import { createModuleFolder } from './commands/createModule.js';
+import { createController } from './commands/createController.js';
 
 const commands = ["create:module"];
 
@@ -37,6 +38,9 @@ switch (userCommand) {
 
         // 3- Create a module folder
         createModuleFolder(commandArg);
+
+        // 4- Create a controller
+        createController(commandArg)
 
         break;
 

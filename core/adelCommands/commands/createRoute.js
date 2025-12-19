@@ -10,7 +10,7 @@ export function registerRoute(commandArg) {
             // Go back two linesand add
 
             const importNewRoute = `import ${commandArg}Router from './modules/notes/${commandArg}.route.js';`;
-            const newRoute = `\nmainRouter.use('/${commandArg}', ${commandArg}Router);`;
+            const newRoute = `mainRouter.use('/${commandArg}', ${commandArg}Router);`;
             mainRouterLinesArray.splice(0, 0, importNewRoute);
             mainRouterLinesArray.splice(index, 0, newRoute);
             break;
